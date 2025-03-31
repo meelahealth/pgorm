@@ -294,6 +294,35 @@ where
     }
 }
 
+pub trait RawPaginatorTrait<'db, C>
+where
+    C: ConnectionTrait,
+{
+    type Selector: SelectorTrait + Send + Sync + 'db;
+    fn paginate_raw(self, db: &'db C, page_size: u64) -> Paginator<'db, C, Self::Selector>;
+}
+
+impl<'db, C, M> RawPaginatorTrait<'db, C> for SelectorRaw<SelectModel<M>>
+where
+    C: ConnectionTrait,
+    M: FromQueryResult + Send + Sync + 'db,
+{
+    type Selector = SelectModel<M>;
+
+    fn paginate_raw(self, db: &'db C, page_size: u64) -> Paginator<'db, C, Self::Selector> {
+        assert!(page_size != 0, "page_size should not be zero");
+        let mut query = SelectStatement::new();
+        query.expr(Expr::cust(self.stmt));
+        Paginator {
+            query,
+            page: 0,
+            page_size,
+            db,
+            selector: PhantomData,
+        }
+    }
+}
+
 impl<'db, C, M, N, E, F> PaginatorTrait<'db, C> for SelectTwo<E, F>
 where
     C: ConnectionTrait,
