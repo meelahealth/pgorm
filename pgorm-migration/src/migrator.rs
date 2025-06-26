@@ -147,7 +147,7 @@ pub trait MigratorTrait: Send {
     /// Create migration table `seaql_migrations` in the database
     async fn install(db: &(impl ConnectionTrait)) -> Result<(), DbErr> {
         db.execute("CREATE TABLE IF NOT EXISTS seaql_migrations (version TEXT NOT NULL, applied_at BIGINT NOT NULL)", &[]).await?;
-        tracing::debug!("Installed");
+        tracing::trace!("Ensured `seaql_migrations` table exists");
         Ok(())
     }
 
