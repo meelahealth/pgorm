@@ -7,7 +7,7 @@ use crate::{
 // use chrono::{DateTime, FixedOffset, Local, NaiveDate, NaiveDateTime, NaiveTime, Utc};
 // use rust_decimal::Decimal;
 use pgorm_query::{
-    ArrayType, Condition, DynIden, Expr, IntoValueTuple, Order, QueryBuilder, SeaRc,
+    Condition, DynIden, Expr, IntoValueTuple, Order, QueryBuilder, SeaRc,
     SelectStatement, SimpleExpr, Value, ValueTuple,
 };
 use tokio_postgres::types::{IsNull, ToSql, Type, to_sql_checked};
@@ -2413,7 +2413,7 @@ use bytes::BytesMut;
 use super::QueryResult;
 
 #[inline(always)]
-fn accepts<T: ToSql>(input: T, ty: &Type) -> bool {
+fn accepts<T: ToSql>(_input: T, ty: &Type) -> bool {
     T::accepts(ty)
 }
 
@@ -2494,9 +2494,9 @@ impl ToSql for ValueHolder {
                 .collect::<Vec<_>>()
                 .to_sql(ty, out),
             Value::Array(_, None) => Ok(IsNull::Yes),
-            Value::Vector(vector) => todo!(),
-            Value::IpNetwork(ip_network) => todo!(),
-            Value::MacAddress(mac_address) => todo!(),
+            Value::Vector(_vector) => todo!(),
+            Value::IpNetwork(_ip_network) => todo!(),
+            Value::MacAddress(_mac_address) => todo!(),
         }
     }
 

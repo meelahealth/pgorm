@@ -300,7 +300,7 @@ impl TryGetable for u32 {
 }
 
 #[allow(dead_code)]
-fn err_null_idx_col<I: RowIndex + std::fmt::Display>(idx: I) -> TryGetError {
+fn err_null_idx_col<I: RowIndex + std::fmt::Display>(_idx: I) -> TryGetError {
     TryGetError::Null("TODO".into()) //format!("{idx:?}"))
 }
 

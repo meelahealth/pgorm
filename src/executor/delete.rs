@@ -23,7 +23,7 @@ where
     A: ActiveModelTrait,
 {
     /// Execute a DELETE operation on one ActiveModel
-    pub fn exec<C>(self, db: &'a C) -> impl Future<Output = Result<DeleteResult, DbErr>> + '_
+    pub fn exec<C>(self, db: &'a C) -> impl Future<Output = Result<DeleteResult, DbErr>> + 'a
     where
         C: ConnectionTrait,
     {
@@ -37,7 +37,7 @@ where
     E: EntityTrait,
 {
     /// Execute a DELETE operation on many ActiveModels
-    pub fn exec<C>(self, db: &'a C) -> impl Future<Output = Result<DeleteResult, DbErr>> + '_
+    pub fn exec<C>(self, db: &'a C) -> impl Future<Output = Result<DeleteResult, DbErr>> + 'a
     where
         C: ConnectionTrait,
     {

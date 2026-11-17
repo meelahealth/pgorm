@@ -8,10 +8,9 @@ pub use connection::*;
 pub use db_connection::*;
 pub use tokio_postgres::Config;
 
-use pgorm_pool::{ClientWrapper, Manager, ManagerConfig, Pool, PoolBuilder, RecyclingMethod};
+use pgorm_pool::{Manager, ManagerConfig, Pool, PoolBuilder, RecyclingMethod};
 use std::{
     collections::BTreeMap,
-    ops::{Deref, DerefMut},
     sync::Arc,
 };
 // pub use statement::*;

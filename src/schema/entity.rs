@@ -190,7 +190,7 @@ where
     let types = match orm_column_def.col_type {
         ColumnType::Enum {
             ref name,
-            ref variants,
+            variants: _,
         } => ColumnType::Custom(SeaRc::clone(name)),
         _ => orm_column_def.col_type,
     };
