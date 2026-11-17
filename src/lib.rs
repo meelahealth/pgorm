@@ -1,13 +1,3 @@
-#![cfg_attr(docsrs, feature(doc_cfg))]
-#![warn(missing_docs)]
-#![deny(
-    missing_debug_implementations,
-    clippy::missing_panics_doc,
-    clippy::unwrap_used,
-    clippy::print_stderr,
-    clippy::print_stdout
-)]
-
 mod database;
 mod docs;
 /// Module for the Entity type and operations
